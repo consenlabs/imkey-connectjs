@@ -5,7 +5,7 @@
  BTC 交易签名
 
 ```javascript
-const result = await Connect.signTransaction(params);	
+const result = await Connect.signBtcTransaction(params);	
 ```
 
 #### Params
@@ -30,12 +30,16 @@ const result = await Connect.signTransaction(params);
 
 
 
+### Example
+
+
+
 ### 2. SegWit 交易签名
 
 BTC带隔离见证的交易签名
 
 ```javascript
-const result = await Connect.signSegWitTransaction(params);	
+const result = await Connect.signBtcSegWitTransaction(params);	
 ```
 
 #### Param
@@ -99,8 +103,66 @@ const result = await Connect.signUsdtSegWitTransaction(params);
 * network，string，网络类型
 * pathPrefix，string，path前缀
 
-#### Return
+#### Result
 
 * witnessTxData，string，带签名值的交易数据
 * wtxHash，string，带签名值的交易数据hash
 * txHash	，string，交易数据hash
+
+###  5. 获取 XPub 
+
+获取指定网络和路径的xpub编码
+
+```javascript
+const result = await Connect.getXPub(params);	
+```
+
+### Param
+
+* network，string，网络类型
+
+* path，string，path路径
+* xpub，string，xpub数据
+
+### Result
+
+* xpub，string，xpub数据
+
+###  6. 获取BTC地址
+
+获取指定网络和路径的xpub编码
+
+```javascript
+const result = await Connect.getAddress(params);	
+```
+
+### Param
+
+* network，string，网络类型
+
+* path，string，path路径
+* isSegWit bool 是否隔离见证地址
+
+### Result
+
+* address，string，地址
+
+### 7. 注册BTC地址
+
+在硬件钱包菜单我的钱包中显示指定路径的地址
+
+```javascript
+const result = await Connect.registerAddress(params);	
+```
+
+### Param
+
+* network，string，网络类型
+
+* path，string，path路径
+* isSegWit bool 是否隔离见证地址
+
+### Result
+
+* address，string，地址
+
