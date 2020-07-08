@@ -203,7 +203,7 @@ const result = await Connect.signEthTransaction(params);
 ETH 消息签名
 
 ```javascript
-const result = await Connect.signEthTransaction(params);	
+const result = await Connect.signEthMessage(params);	
 ```
 
 #### Params
@@ -216,7 +216,7 @@ const result = await Connect.signEthTransaction(params);
 
 * signature，string，消息签名结果
 
-###  6. 获取ETH地址
+###  3. 获取ETH地址
 
 获取指定网络和路径的地址
 
@@ -243,6 +243,159 @@ const result = await Connect.registerEthAddress(params);
 ```
 
 ### Param
+
+* network，string，网络类型
+
+* path，string，path路径
+
+### Result
+
+* address，string，地址
+
+
+
+## EOS
+
+### 1. 交易签名
+
+Eos 交易签名
+
+```javascript
+const result = await Connect.signEosTransaction(params);	
+```
+
+#### Params
+
+* path，string，path路径
+* sign_datas，EosSignData，数据
+  * EosSignData
+    * txData，string，交易数据
+    * publicKeys，string，公钥
+    * chainId，string，chain ID
+    * to，string，收款地址
+    * from，string，付款地址
+    * payment，string，支付金额
+
+#### Result
+
+* signs string，带签名值的交易数据
+* hash string，交易数据hash
+
+### 2. 消息签名
+
+EOS 消息签名
+
+```javascript
+const result = await Connect.signEosMessage(params);	
+```
+
+#### Params
+
+* path，string，path路径
+* data，string，消息
+* isHex，bool，是否为hex
+
+#### Result
+
+* signature，string，消息签名结果
+
+###  3. 获取EOS 公钥
+
+获取指定网络和路径的公钥
+
+```javascript
+const result = await Connect.getEosPubKey(params);	
+```
+
+### Param
+
+* path，string，path路径
+
+### Result
+
+* pubkey，string，公钥
+
+### 4. 注册ETH地址
+
+在硬件钱包菜单我的钱包中显示指定路径的公钥
+
+```javascript
+const result = await Connect.registerEosPubkey(params);	
+```
+
+### Param
+
+* network，string，网络类型
+
+* path，string，path路径
+
+### Result
+
+* pubkey，string，地址
+
+## Cosmos
+
+### 1. 交易签名
+
+ EOS 交易签名
+
+```javascript
+const result = await Connect.signCosmosTransaction(params);	
+```
+
+#### Params
+
+* path，string，path路径
+* pamentDisplay 金额（屏幕显示）
+* toDisplay 收款地址（屏幕显示）
+* fromDisplay 转出地址 （屏幕显示）
+* feeDisplay 矿工费 （屏幕显示）
+* signData （签名数据）
+  * accountNumber
+  * chainId
+  * fee 
+  * memo
+  * msgs msg结构json字符串
+  * sequence
+
+#### Result
+
+* `txData` string，带签名值的交易数据
+* txHash string，交易数据hash
+
+###  2. 获取地址
+
+获取指定网络和路径的地址
+
+```javascript
+const result = await Connect.getCosmosAddress(params);	
+```
+
+### Param
+
+* path，string，path路径
+
+### Result
+
+* address，string，地址
+
+### 4. 注册公钥
+
+在硬件钱包菜单我的钱包中显示指定路径的地址
+
+```javascript
+const result = await Connect.registerCosmosAddress(params);	
+```
+
+### Param
+
+* path，string，path路径
+
+### Result
+
+* address，string，地址
+
+
 
 * network，string，网络类型
 
