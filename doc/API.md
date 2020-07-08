@@ -130,10 +130,10 @@ const result = await Connect.getXPub(params);
 
 ###  6. 获取BTC地址
 
-获取指定网络和路径的xpub编码
+获取指定网络和路径的地址
 
 ```javascript
-const result = await Connect.getAddress(params);	
+const result = await Connect.getBtcAddress(params);	
 ```
 
 ### Param
@@ -152,7 +152,7 @@ const result = await Connect.getAddress(params);
 在硬件钱包菜单我的钱包中显示指定路径的地址
 
 ```javascript
-const result = await Connect.registerAddress(params);	
+const result = await Connect.registerBtcAddress(params);	
 ```
 
 ### Param
@@ -161,6 +161,92 @@ const result = await Connect.registerAddress(params);
 
 * path，string，path路径
 * isSegWit bool 是否隔离见证地址
+
+### Result
+
+* address，string，地址
+
+
+
+## ETH
+
+### 1. 交易签名
+
+ ETH 交易签名
+
+```javascript
+const result = await Connect.signEthTransaction(params);	
+```
+
+#### Params
+
+* nonce，string，收款方账户nonce值
+* gasPrice，string，gas价格
+* gasLimit，string，gas限制
+* to，string，收款地址
+* value，string，转账金额
+* data，string，数据
+* chainId，string，链ID
+* path，string，path路径
+* payment，string，支付金额（屏幕显示）
+* receiver，string，收款地址（屏幕显示）
+* sender，string，付款地址
+* fee，string，旷工费（屏幕显示）
+
+#### Result
+
+* `txData` string，带签名值的交易数据
+* txHash string，交易数据hash
+
+### 2. 消息签名
+
+ETH 消息签名
+
+```javascript
+const result = await Connect.signEthTransaction(params);	
+```
+
+#### Params
+
+* path，string，path路径
+* message，string，消息
+* sender，string，发送方地址
+
+#### Result
+
+* signature，string，消息签名结果
+
+###  6. 获取ETH地址
+
+获取指定网络和路径的地址
+
+```javascript
+const result = await Connect.getEthAddress(params);	
+```
+
+### Param
+
+* network，string，网络类型
+
+* path，string，path路径
+
+### Result
+
+* address，string，地址
+
+### 4. 注册ETH地址
+
+在硬件钱包菜单我的钱包中显示指定路径的地址
+
+```javascript
+const result = await Connect.registerEthAddress(params);	
+```
+
+### Param
+
+* network，string，网络类型
+
+* path，string，path路径
 
 ### Result
 
