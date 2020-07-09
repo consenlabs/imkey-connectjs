@@ -225,8 +225,6 @@ const result = await Connect.getEthAddress(params);
 
 ### Param
 
-* `network` - string，网络类型
-
 * `path` - string，path路径
 
 ### Result
@@ -242,8 +240,6 @@ const result = await Connect.registerEthAddress(params);
 ```
 
 ### Param
-
-* `network` - string，网络类型
 
 * `path` - string，path路径
 
