@@ -101,7 +101,7 @@ export interface EthResult {
     txHash : string;
 }
 
-export default class Http{
+export class ImkeyJsApi{
 
     static postData(data: object) {
         // Default options are marked with *
@@ -124,7 +124,7 @@ export default class Http{
     
     static getEthAddress(path: string) :Promise<string>{
         return new Promise<string>((resolve, reject) => {
-            Http.postData({
+            ImkeyJsApi.postData({
                 "jsonrpc": "2.0",
                 "method": "eth.getAddress",
                 "params": {
@@ -147,7 +147,7 @@ export default class Http{
 
     static registerEthAddress(path: string) :Promise<string>{
         return new Promise<string>((resolve, reject) => {
-            Http.postData({
+            ImkeyJsApi.postData({
                 "jsonrpc": "2.0",
                 "method": "eth.registerAddress",
                 "params": {
@@ -169,7 +169,7 @@ export default class Http{
 
     static signEthMessage(message: string, address: string):Promise<string> {
         return new Promise<string>((resolve, reject) => {
-            Http.postData({
+            ImkeyJsApi.postData({
                 "jsonrpc": "2.0",
                 "method": "eth.signMessage",
                 "params": {
@@ -193,7 +193,7 @@ export default class Http{
 
     static signEthTransaction(param: EthTransactionParam) {
         return new Promise<EthResult>((resolve, reject) => {
-            Http.postData({
+            ImkeyJsApi.postData({
                 "jsonrpc": "2.0",
                 "method": "eth.signTransaction",
                 "params": {
@@ -234,7 +234,7 @@ export default class Http{
 
     static getBtcAddress(path: string) :Promise<string>{
         return new Promise<string>((resolve, reject) => {
-            Http.postData({
+            ImkeyJsApi.postData({
                 "jsonrpc": "2.0",
                 "method": "btc.getAddress",
                 "params": {
@@ -258,7 +258,7 @@ export default class Http{
 
     static registerBtcAddress(path: string) :Promise<string>{
         return new Promise<string>((resolve, reject) => {
-            Http.postData({
+            ImkeyJsApi.postData({
                 "jsonrpc": "2.0",
                 "method": "btc.registerAddress",
                 "params": {
@@ -281,7 +281,7 @@ export default class Http{
 
     static getBtcSegwitAddress(path: string) :Promise<string>{
         return new Promise<string>((resolve, reject) => {
-            Http.postData({
+            ImkeyJsApi.postData({
                 "jsonrpc": "2.0",
                 "method": "btc.getSegWitAddress",
                 "params": {
@@ -305,7 +305,7 @@ export default class Http{
 
     static registerBtcSegwitAddress(path: string) :Promise<string>{
         return new Promise<string>((resolve, reject) => {
-            Http.postData({
+            ImkeyJsApi.postData({
                 "jsonrpc": "2.0",
                 "method": "btc.registerSegWitAddress",
                 "params": {
@@ -329,7 +329,7 @@ export default class Http{
 
     static getBtcXpub(path: string) :Promise<string>{
         return new Promise<string>((resolve, reject) => {
-            Http.postData({
+            ImkeyJsApi.postData({
                 "jsonrpc": "2.0",
                 "method": "btc.getXpub",
                 "params": {
@@ -353,7 +353,7 @@ export default class Http{
 
     static signBtcTransaction(params:BtcTransactionParam):Promise<string> {
         return new Promise<string>((resolve, reject) => {
-            Http.postData({
+            ImkeyJsApi.postData({
                 "jsonrpc": "2.0",
                 "method": "btc.signTransaction",
                 "params": params,
@@ -373,7 +373,7 @@ export default class Http{
 
     static signBtcSegWitTransaction(params:BtcTransactionParam):Promise<string> {
         return new Promise<string>((resolve, reject) => {
-            Http.postData({
+            ImkeyJsApi.postData({
                 "jsonrpc": "2.0",
                 "method": "btc.signSegWitTransaction",
                 "params": params,
@@ -393,7 +393,7 @@ export default class Http{
 
     static signUsdtTransaction(params:UsdtTransactionParam):Promise<string> {
         return new Promise<string>((resolve, reject) => {
-            Http.postData({
+            ImkeyJsApi.postData({
                 "jsonrpc": "2.0",
                 "method": "btc.signUsdtTransaction",
                 "params": params,
@@ -413,7 +413,7 @@ export default class Http{
 
     static signUsdtSegWitTransaction(params:UsdtTransactionParam):Promise<string> {
         return new Promise<string>((resolve, reject) => {
-            Http.postData({
+            ImkeyJsApi.postData({
                 "jsonrpc": "2.0",
                 "method": "btc.signUsdtSegWitTransaction",
                 "params": params,
@@ -433,7 +433,7 @@ export default class Http{
 
     static getEosPubKey(path: string) :Promise<string>{
         return new Promise<string>((resolve, reject) => {
-            Http.postData({
+            ImkeyJsApi.postData({
                 "jsonrpc": "2.0",
                 "method": "eos.getPubKey",
                 "params": {
@@ -456,7 +456,7 @@ export default class Http{
 
     static registerEosPubKey(path: string) :Promise<string>{
         return new Promise<string>((resolve, reject) => {
-            Http.postData({
+            ImkeyJsApi.postData({
                 "jsonrpc": "2.0",
                 "method": "eos.registerPubKey",
                 "params": {
@@ -478,7 +478,7 @@ export default class Http{
 
     static signEosMessage(data: string, isHex: boolean, path: string, publicKey: string): Promise<string> {
         return new Promise<string>((resolve, reject) => {
-            Http.postData({
+            ImkeyJsApi.postData({
                 "jsonrpc": "2.0",
                 "method": "eos.signMessage",
                 "params": {
@@ -503,7 +503,7 @@ export default class Http{
 
     static signEosTransaction(param: EosTransactionParam) {
         return new Promise<EthResult>((resolve, reject) => {
-            Http.postData({
+            ImkeyJsApi.postData({
                 "jsonrpc": "2.0",
                 "method": "eos.signTransaction",
                 "params": param,
@@ -523,7 +523,7 @@ export default class Http{
 
     static getCosmosAddress(path: string) :Promise<string>{
         return new Promise<string>((resolve, reject) => {
-            Http.postData({
+            ImkeyJsApi.postData({
                 "jsonrpc": "2.0",
                 "method": "cosmos.getAddress",
                 "params": {
@@ -546,7 +546,7 @@ export default class Http{
 
     static registerCosmosAddress(path: string) :Promise<string>{
         return new Promise<string>((resolve, reject) => {
-            Http.postData({
+            ImkeyJsApi.postData({
                 "jsonrpc": "2.0",
                 "method": "cosmos.registerAddress",
                 "params": {
@@ -569,7 +569,7 @@ export default class Http{
 
     static signCosmosTransaction(param: CosmosTransactionParam) {
         return new Promise<EthResult>((resolve, reject) => {
-            Http.postData({
+            ImkeyJsApi.postData({
                 "jsonrpc": "2.0",
                 "method": "cosmos.signTransaction",
                 "params": param,

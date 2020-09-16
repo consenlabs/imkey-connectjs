@@ -1,10 +1,10 @@
-import Http, { EthTransactionParam } from "./index";
+import { EthTransactionParam, ImkeyJsApi } from "./index";
 
 const IMKEY_ETH_PATH = "m/44'/60'/0'/0/0";
 const btn = document.createElement('button');
 btn.innerText = "I'm imKey Connect";
 btn.addEventListener('click', (e) => {
-    Http.postData({
+    ImkeyJsApi.postData({
         "jsonrpc": "2.0",
         "method": "eth.getAddress",
         "params": {
@@ -17,7 +17,7 @@ btn.addEventListener('click', (e) => {
 const btnGetEthAddress = document.createElement('button');
 btnGetEthAddress.innerText = "GetEthAddress";
 btnGetEthAddress.addEventListener('click', (e) => {
-    Http.getEthAddress(IMKEY_ETH_PATH)
+    ImkeyJsApi.getEthAddress(IMKEY_ETH_PATH)
         .then(console.log)
         .catch(console.log);
 });
@@ -25,7 +25,7 @@ btnGetEthAddress.addEventListener('click', (e) => {
 const btnRegisterEthAddress = document.createElement('button');
 btnRegisterEthAddress.innerText = "RegisterEthAddress";
 btnRegisterEthAddress.addEventListener('click', (e) => {
-    Http.registerEthAddress(IMKEY_ETH_PATH)
+    ImkeyJsApi.registerEthAddress(IMKEY_ETH_PATH)
         .then(console.log)
         .catch(console.log);
 });
@@ -33,7 +33,7 @@ btnRegisterEthAddress.addEventListener('click', (e) => {
 const btnSignEthMessage = document.createElement('button');
 btnSignEthMessage.innerText = "SignEthMessage";
 btnSignEthMessage.addEventListener('click', (e) => {
-    Http.signEthMessage("Hello world", "0x6031564e7b2F5cc33737807b2E58DaFF870B590b")
+    ImkeyJsApi.signEthMessage("Hello world", "0x6031564e7b2F5cc33737807b2E58DaFF870B590b")
         .then(console.log)
         .catch(console.log);
 });
@@ -41,7 +41,7 @@ btnSignEthMessage.addEventListener('click', (e) => {
 const btnSignEthTransaction = document.createElement('button');
 btnSignEthTransaction.innerText = "SignEthTransaction";
 btnSignEthTransaction.addEventListener('click', (e) => {
-    Http.signEthTransaction({
+    ImkeyJsApi.signEthTransaction({
         data: "",
         gasLimit: "189000",
         gasPrice: "20000000008",
@@ -62,7 +62,7 @@ btnSignEthTransaction.addEventListener('click', (e) => {
 const btnGetBtcAddress = document.createElement('button');
 btnGetBtcAddress.innerText = "GetBtcAddress";
 btnGetBtcAddress.addEventListener('click', (e) => {
-    Http.getBtcAddress("m/44'/0'/0'/0/0")
+    ImkeyJsApi.getBtcAddress("m/44'/0'/0'/0/0")
         .then(console.log)
         .catch(console.log);
 });
@@ -70,7 +70,7 @@ btnGetBtcAddress.addEventListener('click', (e) => {
 const btnRegisterBtcAddress = document.createElement('button');
 btnRegisterBtcAddress.innerText = "RegisterBtcAddress";
 btnRegisterBtcAddress.addEventListener('click', (e) => {
-    Http.registerBtcAddress("m/44'/0'/0'/0/0")
+    ImkeyJsApi.registerBtcAddress("m/44'/0'/0'/0/0")
         .then(console.log)
         .catch(console.log);
 });
@@ -78,7 +78,7 @@ btnRegisterBtcAddress.addEventListener('click', (e) => {
 const btnGetBtcSegWitAddress = document.createElement('button');
 btnGetBtcSegWitAddress.innerText = "GetBtcSegWitAddress";
 btnGetBtcSegWitAddress.addEventListener('click', (e) => {
-    Http.getBtcSegwitAddress("m/49'/0'/0'/0/0")
+    ImkeyJsApi.getBtcSegwitAddress("m/49'/0'/0'/0/0")
         .then(console.log)
         .catch(console.log);
 });
@@ -86,7 +86,7 @@ btnGetBtcSegWitAddress.addEventListener('click', (e) => {
 const btnRegisterBtcSegWitAddress = document.createElement('button');
 btnRegisterBtcSegWitAddress.innerText = "RegisterBtcSegWitAddress";
 btnRegisterBtcSegWitAddress.addEventListener('click', (e) => {
-    Http.registerBtcSegwitAddress("m/49'/0'/0'/0/0")
+    ImkeyJsApi.registerBtcSegwitAddress("m/49'/0'/0'/0/0")
         .then(console.log)
         .catch(console.log);
 });
@@ -94,7 +94,7 @@ btnRegisterBtcSegWitAddress.addEventListener('click', (e) => {
 const btnGetXpub = document.createElement('button');
 btnGetXpub.innerText = "GetBtcXpub";
 btnGetXpub.addEventListener('click', (e) => {
-    Http.getBtcXpub("m/44'/0'/0'/0/0")
+    ImkeyJsApi.getBtcXpub("m/44'/0'/0'/0/0")
         .then(console.log)
         .catch(console.log);
 });
@@ -102,7 +102,7 @@ btnGetXpub.addEventListener('click', (e) => {
 const btnSignBtcTransaction = document.createElement('button');
 btnSignBtcTransaction.innerText = "SignBtcTransaction";
 btnSignBtcTransaction.addEventListener('click', (e) => {
-    Http.signBtcTransaction({
+    ImkeyJsApi.signBtcTransaction({
         "utxo": [{
             "txHash": "983adf9d813a2b8057454cc6f36c6081948af849966f9b9a33e5b653b02f227a",
             "vout": 0,
@@ -157,7 +157,7 @@ btnSignBtcTransaction.addEventListener('click', (e) => {
 const btnSignBtcSegWitTransaction = document.createElement('button');
 btnSignBtcSegWitTransaction.innerText = "SignBtcSegWitTransaction";
 btnSignBtcSegWitTransaction.addEventListener('click', (e) => {
-    Http.signBtcSegWitTransaction({
+    ImkeyJsApi.signBtcSegWitTransaction({
         "utxo": [{
             "txHash": "c2ceb5088cf39b677705526065667a3992c68cc18593a9af12607e057672717f",
             "vout": 0,
@@ -194,7 +194,7 @@ btnSignBtcSegWitTransaction.addEventListener('click', (e) => {
 const btnSignUsdtTransaction = document.createElement('button');
 btnSignUsdtTransaction.innerText = "SignUsdtTransaction";
 btnSignUsdtTransaction.addEventListener('click', (e) => {
-    Http.signUsdtTransaction({
+    ImkeyJsApi.signUsdtTransaction({
         "utxo": [{
 			"txHash": "0dd195c815c5086c5995f43a0c67d28344ae5fa130739a5e03ef40fea54f2031",
 			"vout": 0,
@@ -220,7 +220,7 @@ btnSignUsdtTransaction.addEventListener('click', (e) => {
 const btnSignUsdtSegWitTransaction = document.createElement('button');
 btnSignUsdtSegWitTransaction.innerText = "SignUsdtSegWitTransaction";
 btnSignUsdtSegWitTransaction.addEventListener('click', (e) => {
-    Http.signUsdtSegWitTransaction({
+    ImkeyJsApi.signUsdtSegWitTransaction({
         "utxo": [{
 			"txHash": "9baf6fd0e560f9f199f4879c23cb73b9c4affb54a1cfdbacb85687efa89f4c78",
 			"vout": 1,
@@ -246,7 +246,7 @@ btnSignUsdtSegWitTransaction.addEventListener('click', (e) => {
 const btnGetEosPubKey = document.createElement('button');
 btnGetEosPubKey.innerText = "GetEosPubKey";
 btnGetEosPubKey.addEventListener('click', (e) => {
-    Http.getEosPubKey("m/44'/194'/0'/0/0")
+    ImkeyJsApi.getEosPubKey("m/44'/194'/0'/0/0")
         .then(console.log)
         .catch(console.log);
 });
@@ -254,7 +254,7 @@ btnGetEosPubKey.addEventListener('click', (e) => {
 const btnRegisterEosPubKey = document.createElement('button');
 btnRegisterEosPubKey.innerText = "RegisterEosPubKey";
 btnRegisterEosPubKey.addEventListener('click', (e) => {
-    Http.registerEosPubKey("m/44'/194'/0'/0/0")
+    ImkeyJsApi.registerEosPubKey("m/44'/194'/0'/0/0")
         .then(console.log)
         .catch(console.log);
 });
@@ -262,7 +262,7 @@ btnRegisterEosPubKey.addEventListener('click', (e) => {
 const btnSignEosMessage = document.createElement('button');
 btnSignEosMessage.innerText = "SignEosMessage";
 btnSignEosMessage.addEventListener('click', (e) => {
-    Http.signEosMessage("imKey2019", false,"m/44'/194'/0'/0/0","EOS88XhiiP7Cu5TmAUJqHbyuhyYgd6sei68AU266PyetDDAtjmYWF")
+    ImkeyJsApi.signEosMessage("imKey2019", false,"m/44'/194'/0'/0/0","EOS88XhiiP7Cu5TmAUJqHbyuhyYgd6sei68AU266PyetDDAtjmYWF")
         .then(console.log)
         .catch(console.log);
 });
@@ -270,7 +270,7 @@ btnSignEosMessage.addEventListener('click', (e) => {
 const btnSignEosTransaction = document.createElement('button');
 btnSignEosTransaction.innerText = "SignEosTransaction";
 btnSignEosTransaction.addEventListener('click', (e) => {
-    Http.signEosTransaction({
+    ImkeyJsApi.signEosTransaction({
         "publicKeys": [{
 			"publicKey": "EOS88XhiiP7Cu5TmAUJqHbyuhyYgd6sei68AU266PyetDDAtjmYWF"
 		}],
@@ -290,7 +290,7 @@ btnSignEosTransaction.addEventListener('click', (e) => {
 const btnGetCosmosAddress = document.createElement('button');
 btnGetCosmosAddress.innerText = "GetCosmosAddress";
 btnGetCosmosAddress.addEventListener('click', (e) => {
-    Http.getCosmosAddress("m/44'/118'/0'/0/0")
+    ImkeyJsApi.getCosmosAddress("m/44'/118'/0'/0/0")
         .then(console.log)
         .catch(console.log);
 });
@@ -298,7 +298,7 @@ btnGetCosmosAddress.addEventListener('click', (e) => {
 const btnRegisterCosmosAddress = document.createElement('button');
 btnRegisterCosmosAddress.innerText = "RegisterCosmosAddress";
 btnRegisterCosmosAddress.addEventListener('click', (e) => {
-    Http.registerCosmosAddress("m/44'/118'/0'/0/0")
+    ImkeyJsApi.registerCosmosAddress("m/44'/118'/0'/0/0")
         .then(console.log)
         .catch(console.log);
 });
@@ -306,7 +306,7 @@ btnRegisterCosmosAddress.addEventListener('click', (e) => {
 const btnSignCosmosTransaction = document.createElement('button');
 btnSignCosmosTransaction.innerText = "SignCosmosTransaction";
 btnSignCosmosTransaction.addEventListener('click', (e) => {
-    Http.signCosmosTransaction({
+    ImkeyJsApi.signCosmosTransaction({
         "path": "m/44'/118'/0'/0/0",
 		"fee": {
 			"amount": [{
