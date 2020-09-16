@@ -35,6 +35,34 @@ export interface EosTransactionParam {
     preview: EosPreview;
 }
 
+export interface Coin{
+    amount:string;
+    denom:string;
+}
+
+export interface StdFee{
+    amount:Coin[]
+    gas:string;
+}
+
+export interface CosmosPreview{
+    paymentDis:string;
+    toDis:string;
+    fromDis:string;
+    feeDis:string;
+}
+
+export interface CosmosTransactionParam {
+    path : string;
+    fee : StdFee;
+    msg : any;
+    memo : string;
+    accountNumber: string;
+    chainId: string;
+    sequence: string;
+    preview:CosmosPreview;
+}
+
 export interface BtcTransactionParam {
     to : string;
     changeAddressIndex : number;
@@ -192,11 +220,6 @@ export default class Http{
                 if (ret.result == null) {
                     reject(ret.error);
                 } else {
-                    // var txData = ret.result.txData;
-                    // if(!ret.result.txData.startsWith("0x")){
-                    //     txData = "0x" + txData;
-                    // }
-
                     const signResult: EthResult = {
                         txData: ret.result.txData,
                         txHash: ret.result.txHash
@@ -483,6 +506,72 @@ export default class Http{
             Http.postData({
                 "jsonrpc": "2.0",
                 "method": "eos.signTransaction",
+                "params": param,
+                "id": requestId++
+            }
+            ).then((ret) => {
+                if (ret.result == null) {
+                    reject(ret.error);
+                } else {
+                    resolve(ret.result);
+                }
+            }).catch((error) => {
+                reject(error);
+            })
+        })
+    }
+
+    static getCosmosAddress(path: string) :Promise<string>{
+        return new Promise<string>((resolve, reject) => {
+            Http.postData({
+                "jsonrpc": "2.0",
+                "method": "cosmos.getAddress",
+                "params": {
+                    "path": path
+                },
+                "id": requestId++
+            }
+            ).then((ret) => {
+                if (ret.result == null) {
+                    reject(ret.error);
+                } else {
+                    resolve(ret.result.address);
+                }
+                console.log
+            }).catch((error) => {
+                reject(error);
+            })
+        })
+    }
+
+    static registerCosmosAddress(path: string) :Promise<string>{
+        return new Promise<string>((resolve, reject) => {
+            Http.postData({
+                "jsonrpc": "2.0",
+                "method": "cosmos.registerAddress",
+                "params": {
+                    "path": path
+                },
+                "id": requestId++
+            }
+            ).then((ret) => {
+                if (ret.result == null) {
+                    reject(ret.error);
+                } else {
+                    resolve(ret.result.address);
+                }
+                console.log
+            }).catch((error) => {
+                reject(error);
+            })
+        })
+    }
+
+    static signCosmosTransaction(param: CosmosTransactionParam) {
+        return new Promise<EthResult>((resolve, reject) => {
+            Http.postData({
+                "jsonrpc": "2.0",
+                "method": "cosmos.signTransaction",
                 "params": param,
                 "id": requestId++
             }

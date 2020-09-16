@@ -287,6 +287,57 @@ btnSignEosTransaction.addEventListener('click', (e) => {
         .catch(console.log);
 });
 
+const btnGetCosmosAddress = document.createElement('button');
+btnGetCosmosAddress.innerText = "GetCosmosAddress";
+btnGetCosmosAddress.addEventListener('click', (e) => {
+    Http.getCosmosAddress("m/44'/118'/0'/0/0")
+        .then(console.log)
+        .catch(console.log);
+});
+
+const btnRegisterCosmosAddress = document.createElement('button');
+btnRegisterCosmosAddress.innerText = "RegisterCosmosAddress";
+btnRegisterCosmosAddress.addEventListener('click', (e) => {
+    Http.registerCosmosAddress("m/44'/118'/0'/0/0")
+        .then(console.log)
+        .catch(console.log);
+});
+
+const btnSignCosmosTransaction = document.createElement('button');
+btnSignCosmosTransaction.innerText = "SignCosmosTransaction";
+btnSignCosmosTransaction.addEventListener('click', (e) => {
+    Http.signCosmosTransaction({
+        "path": "m/44'/118'/0'/0/0",
+		"fee": {
+			"amount": [{
+				"amount": "750",
+				"denom": "muon"
+			}],
+			"gas": "30000"
+		},
+		"msg": [{
+			"type": "cosmos-sdk/MsgSend",
+			"value": {
+				"amount": [],
+				"fromAddress": "cosmos1ajz9y0x3wekez7tz2td2j6l2dftn28v26dd992",
+				"toAddress": "cosmos1yeckxz7tapz34kjwnjxvmxzurerquhtrmxmuxt"
+			}
+		}],
+		"memo": "",
+		"accountNumber": "1234567890",
+		"chainId": "tendermint_test",
+		"sequence": "1234567890",
+		"preview": {
+			"paymentDis": "",
+			"toDis": "",
+			"fromDis": "",
+			"feeDis": "0.00075 atom"
+		}
+    })
+        .then(console.log)
+        .catch(console.log);
+});
+
 // document.appendChild(btn);
 document.body.append(btn);
 document.body.append(btnGetEthAddress);
@@ -312,3 +363,8 @@ document.body.append(btnGetEosPubKey);
 document.body.append(btnRegisterEosPubKey);
 document.body.append(btnSignEosMessage);
 document.body.append(btnSignEosTransaction);
+
+document.body.append(document.createElement("br"));
+document.body.append(btnGetCosmosAddress);
+document.body.append(btnRegisterCosmosAddress);
+document.body.append(btnSignCosmosTransaction);
